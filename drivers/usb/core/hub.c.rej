@@ -1,0 +1,10 @@
+--- drivers/usb/core/hub.c
++++ drivers/usb/core/hub.c
+@@ -1644,7 +1644,6 @@
+ {
+ 	struct usb_device	*udev = *pdev;
+ 	int			i;
+-	struct usb_hcd		*hcd = bus_to_hcd(udev->bus);
+ 
+ 	if (!udev) {
+ 		pr_debug ("%s nodev\n", __func__);
