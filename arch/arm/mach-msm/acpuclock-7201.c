@@ -455,8 +455,9 @@ static struct clkctl_acpu_speed pll0_960_pll1_737_pll2_1200_pll4_800_25a[] = {
  /* Add overclock frequencies to this frequency table */
         { 1, 678000, ACPU_PLL_2, 2, 1, 80000, 3, 6, 200000 },
         { 1, 722000, ACPU_PLL_2, 2, 1, 85000, 3, 6, 200000 },
-        { 1, 767000, ACPU_PLL_2, 2, 1, 91000, 3, 6, 200000 }, 
-        { 1, 800000, ACPU_PLL_2, 2, 1, 94000, 3, 6, 200000 },
+        { 1, 767000, ACPU_PLL_2, 2, 1, 92000, 3, 6, 200000 },              
+        /*{ 1, 800000, ACPU_PLL_2, 2, 1, 95000, 3, 6, 200000 },
+        { 1, 828000, ACPU_PLL_2, 2, 1, 99000, 3, 6, 200000 },*/
         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0} }
 };
 
@@ -665,7 +666,7 @@ static void acpuclk_set_div(const struct clkctl_acpu_speed *hunt_s)
         // Perform overclocking if requested
        if(hunt_s->pll==ACPU_PLL_2 && hunt_s->a11clk_khz>600000) {
                 // Change the speed of PLL2
-                writel_relaxed(hunt_s->a11clk_khz/10375, PLLn_L_VAL(ACPU_PLL_2));
+                writel_relaxed(hunt_s->a11clk_khz/10200, PLLn_L_VAL(ACPU_PLL_2));
                 udelay(50);
         }
         /* Program clock source and divider */

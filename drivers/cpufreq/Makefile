@@ -23,6 +23,8 @@ obj-$(CONFIG_CPU_FREQ_GOV_BRAZILIANWAX)	+= cpufreq_brazilianwax.o
 obj-$(CONFIG_CPU_FREQ_GOV_LULZACTIVE)	+= cpufreq_lulzactive.o
 obj-$(CONFIG_CPU_FREQ_GOV_LAZY)		+= cpufreq_lazy.o
 obj-$(CONFIG_CPU_FREQ_GOV_LIONHEART)    += cpufreq_lionheart.o
+obj-$(CONFIG_CPU_FREQ_GOV_BADASS)	+= cpufreq_badass.o
+obj-$(CONFIG_CPU_FREQ_GOV_SMARTASSH3)   += cpufreq_smartassH3.o
 
 # CPUfreq cross-arch helpers
 obj-$(CONFIG_CPU_FREQ_TABLE)		+= freq_table.o
