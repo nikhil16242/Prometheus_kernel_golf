@@ -24,11 +24,6 @@
 
 #define CPUFREQ_NAME_LEN 16
 
-#ifdef CONFIG_CPU_FREQ_GOV_BADASS_GPU_CONTROL
-/* Badass gpu state detection */
-extern bool gpu_busy_state;
-#endif
-
 
 /*********************************************************************
  *                     CPUFREQ NOTIFIER INTERFACE                    *
@@ -365,36 +360,9 @@ extern struct cpufreq_governor cpufreq_gov_ondemand;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_CONSERVATIVE)
 extern struct cpufreq_governor cpufreq_gov_conservative;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_conservative)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTERACTIVEX)
-extern struct cpufreq_governor cpufreq_gov_interactivex;
-#define CPUFREQ_DEFAULT_GOVERNOR  (&cpufreq_gov_interactivex)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_LAGFREE)
-extern struct cpufreq_governor cpufreq_gov_lagfree;
-#define CPUFREQ_DEFAULT_GOVERNOR        (&cpufreq_gov_lagfree)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_SMARTASS)
-extern struct cpufreq_governor cpufreq_gov_smartass;
-#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_smartass)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_SCARY)
-extern struct cpufreq_governor cpufreq_gov_scary;
-#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_scary)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_SMARTASS2)
-extern struct cpufreq_governor cpufreq_gov_smartass2;
-#define CPUFREQ_DEFAULT_GOVERNOR  (&cpufreq_gov_smartass2)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTELLIDEMAND)
-extern struct cpufreq_governor cpufreq_gov_intellidemand;
-#define CPUFREQ_DEFAULT_GOVERNOR (&cpufreq_gov_intellidemand)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_HOTPLUG)
-extern struct cpufreq_governor cpufreq_gov_hotplug;
-#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_hotplug)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_LULZACTIVE)
-extern struct cpufreq_governor cpufreq_gov_lulzactive;
-#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_lulzactive)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_LAZY)
-extern struct cpufreq_governor cpufreq_gov_lazy;
-#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_lazy)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_SMARTASSH3)
-extern struct cpufreq_governor cpufreq_gov_smartass_h3;
-#define CPUFREQ_DEFAULT_GOVERNOR (&cpufreq_gov_smartass_h3)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTERACTIVE)
+extern struct cpufreq_governor cpufreq_gov_interactive;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_interactive)
 #endif
 
 

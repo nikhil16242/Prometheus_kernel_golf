@@ -1,6 +1,6 @@
 VERSION = 3
 PATCHLEVEL = 0
-SUBLEVEL = 16
+SUBLEVEL = 73
 EXTRAVERSION =
 NAME = Sneaky Weasel
 
@@ -9,7 +9,7 @@ NAME = Sneaky Weasel
 # More info can be located in ./README
 # Comments in this file are targeted only to the developer, do not
 # expect to learn how to build the kernel reading this file.
-# Rename to SUBLEVEL = 70 to get wifi to work
+# Rename to SUBLEVEL = 69 to get wifi to work
 # Do not:
 # o  use make's built-in rules and variables
 #    (this increases performance and avoids hard-to-debug behaviour);
@@ -354,12 +354,12 @@ CC		= $(srctree)/scripts/gcc-wrapper.py $(REAL_CC)
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
-CFLAGS_MODULE   = -DMODULE -march=armv7-a -mfpu=neon -funswitch-loops -fpredictive-commoning -fgcse-after-reload -ftree-vectorize -fipa-cp-clone -fsingle-precision-constant -fmodulo-sched -fmodulo-sched-allow-regmoves -pipe
+CFLAGS_MODULE   =
 AFLAGS_MODULE   =
 LDFLAGS_MODULE  =
-CFLAGS_KERNEL	= -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -march=armv7-a -ftree-vectorize -funswitch-loops -fipa-cp-clone -fgcse-after-reload -fpredictive-commoning -mfpu=neon -fmodulo-sched -fmodulo-sched-allow-regmoves -pipe
+CFLAGS_KERNEL	=
 AFLAGS_KERNEL	=
-CFLAGS_GCOV	= --fprofile-arcs -ftest-coverage -pipe
+CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
 
 # Use LINUXINCLUDE when you must reference the include/ directory.
@@ -375,12 +375,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fmodulo-sched -fmodulo-sched-allow-regmoves \
-                   -funswitch-loops -fpredictive-commoning -fgcse-after-reload -fno-tree-vectorize \
-                   -ffast-math -ftree-vectorize \
-		   -fno-delete-null-pointer-checks \
-                   -marm -march=armv7-a -mfloat-abi=hard -mfpu=vfp3 \
-                   -mfpu=neon  
+		   -fno-delete-null-pointer-checks
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
@@ -573,7 +568,7 @@ all: vmlinux
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os
 else
-KBUILD_CFLAGS	+= -O3
+KBUILD_CFLAGS	+= -O2
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
@@ -589,7 +584,7 @@ endif
 
 # This warning generated too much noise in a regular build.
 # Use make W=1 to enable this warning (see scripts/Makefile.build)
-# KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
+KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
 
 ifdef CONFIG_FRAME_POINTER
 KBUILD_CFLAGS	+= -fno-omit-frame-pointer -fno-optimize-sibling-calls

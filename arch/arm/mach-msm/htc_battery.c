@@ -140,7 +140,6 @@ static unsigned int cache_time;
 static int htc_battery_initial = 0;
 static int htc_full_level_flag = 0;
 static int htc_is_DMB = 0;
-static int fast_charge = 0;
 
 static struct alarm batt_charger_ctrl_alarm;
 static struct work_struct batt_charger_ctrl_work;
@@ -1147,31 +1146,6 @@ static ssize_t htc_battery_show_batt_attr(struct device *dev,
 	return 0;
 }
 
-
-static ssize_t
-fast_charge_show(struct device *dev,
-        struct device_attribute *attr,
-        char *buf)
-{
-      return sprintf(buf, "%d\n", fast_charge);
-}
-
-static ssize_t
-fast_charge_store(struct device *dev,
-     struct device_attribute *attr, const char *buf, size_t size)
-{
-   int value;
-
-   value = ((int) simple_strtoul(buf, NULL, 10));
-   if(value == 0 || value == 1){
-    fast_charge = value;
-    BATT_LOG("set fast_charge %d", fast_charge);
-}
-else
-  return -EINVAL;
-
-return size;
-}
 /* -------------------------------------------------------------------------- */
 static int htc_power_get_property(struct power_supply *psy,
 				    enum power_supply_property psp,
@@ -1389,7 +1363,6 @@ static struct device_attribute htc_battery_attrs[] = {
 	__ATTR(smem_text, S_IRUGO, htc_battery_show_smem, NULL),
 #endif
 	__ATTR(batt_attr_text, S_IRUGO, htc_battery_show_batt_attr, NULL),
-        __ATTR(fast_charge, S_IRUGO|S_IWUSR, fast_charge_show, fast_charge_store),
 };
 
 enum {
@@ -2042,14 +2015,8 @@ static int handle_battery_call(struct msm_rpc_server *server,
 		}
 		if (htc_batt_debug_mask & HTC_BATT_DEBUG_M2A_RPC)
 			BATT_LOG("M2A_RPC: set_charging: %d", args->enable);
-		if (htc_batt_info.charger == SWITCH_CHARGER_TPS65200){
-                       if (args->enable == POWER_SUPPLY_ENABLE_SLOW_CHARGE && fast_charge){
-                          args->enable = POWER_SUPPLY_ENABLE_FAST_CHARGE;
-                          pr_info("[BATT]: %s() Force AC charge: %d\n",
-                          __func__, args->enable);
-                         }
+		if (htc_batt_info.charger == SWITCH_CHARGER_TPS65200)
 			tps_set_charger_ctrl(args->enable);
-                      }
 		else if (htc_batt_info.charger == SWITCH_CHARGER)
 			blocking_notifier_call_chain(&cable_status_notifier_list,
 				args->enable, NULL);
