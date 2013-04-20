@@ -455,7 +455,7 @@ static struct clkctl_acpu_speed pll0_960_pll1_737_pll2_1200_pll4_800_25a[] = {
  /* Add overclock frequencies to this frequency table */
         { 1, 678000, ACPU_PLL_2, 2, 1, 80000, 3, 6, 200000 },
         { 1, 722000, ACPU_PLL_2, 2, 1, 85000, 3, 6, 200000 },
-        { 1, 767000, ACPU_PLL_2, 2, 1, 90000, 3, 7, 200000 }, 
+        { 1, 767000, ACPU_PLL_2, 2, 1, 92000, 3, 7, 200000 }, 
         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0} }
 };
 
