@@ -122,6 +122,7 @@ config CRYPTO_NULL
 	select CRYPTO_ALGAPI
 	select CRYPTO_BLKCIPHER
 	select CRYPTO_HASH
+        select CRC32
 	help
 	  These are 'Null' algorithms, used by IPsec, which do nothing.
 

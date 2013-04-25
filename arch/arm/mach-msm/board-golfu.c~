@@ -1879,6 +1879,20 @@ static void msm7x27a_cfg_uart2dm_serial(void)
 static void msm7x27a_cfg_uart2dm_serial(void) { }
 #endif
 
+static struct resource ram_console_resources[] = {
+	{
+		.start  = MSM_RAM_CONSOLE_BASE,
+		.end    = MSM_RAM_CONSOLE_BASE + MSM_RAM_CONSOLE_SIZE - 1,
+		.flags  = IORESOURCE_MEM,
+	},
+};
+
+static struct platform_device ram_console_device = {
+	.name           = "ram_console",
+	.id             = -1,
+	.num_resources  = ARRAY_SIZE(ram_console_resources),
+	.resource       = ram_console_resources,
+};
 
 #if 0
 static struct platform_device *rumi_sim_devices[] __initdata = {
@@ -1939,6 +1953,7 @@ static struct platform_device *golfu_devices[] __initdata = {
 
 #else
 static struct platform_device *golfu_devices[] __initdata = {
+	&ram_console_device,
 	&msm_device_dmov,
 	&msm_device_smd,
 	/* &msm_device_uart1, */
