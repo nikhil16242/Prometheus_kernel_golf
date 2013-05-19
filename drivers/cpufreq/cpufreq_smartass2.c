@@ -812,7 +812,6 @@ static int __init cpufreq_smartass_init(void)
 {
 	unsigned int i;
 	struct smartass_info_s *this_smartass;
-	debug_mask = 0;
 	up_rate_us = DEFAULT_UP_RATE_US;
 	down_rate_us = DEFAULT_DOWN_RATE_US;
 	sleep_ideal_freq = DEFAULT_SLEEP_IDEAL_FREQ;

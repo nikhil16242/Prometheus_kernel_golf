@@ -4841,6 +4841,7 @@
 0x00000000	get_cpu_sysdev	vmlinux	EXPORT_SYMBOL_GPL
 0x00000000	crypto_register_template	vmlinux	EXPORT_SYMBOL_GPL
 0x00000000	fuse_abort_conn	vmlinux	EXPORT_SYMBOL_GPL
+0x00000000	vm_iomap_memory	vmlinux	EXPORT_SYMBOL
 0x00000000	node_states	vmlinux	EXPORT_SYMBOL
 0x00000000	rcu_sched_force_quiescent_state	vmlinux	EXPORT_SYMBOL_GPL
 0x00000000	tty_termios_encode_baud_rate	vmlinux	EXPORT_SYMBOL_GPL
