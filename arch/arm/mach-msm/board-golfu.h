@@ -35,10 +35,12 @@ int __init golfu_wifi_init(void);
 #define MSM_FB_BASE             0x2FE00000
 #define MSM_FB_SIZE             0x00200000
 
-#define MSM_LINUX_BASE          (MSM_MEM_BASE + MSM_LINUX_BASE_OFFSET) /*2MB alignment */
-#define MSM_LINUX_SIZE          (MSM_MEM_SIZE - MSM_LINUX_BASE_OFFSET - MSM_FB_SIZE)/*1MB for ram console*/
+#define MSM_LINUX_BASE          (MSM_MEM_BASE + MSM_LINUX_BASE_OFFSET) /* 2MB alignment */
+#define MSM_LINUX_SIZE          (MSM_MEM_SIZE - MSM_LINUX_BASE_OFFSET - MSM_FB_SIZE - 0x100000)/*1MB for ram console*/
 
 /* Must be same as MSM_HTC_RAM_CONSOLE_PHYS */
+#define MSM_RAM_CONSOLE_BASE    0x2FD00000
+#define MSM_RAM_CONSOLE_SIZE    MSM_HTC_RAM_CONSOLE_SIZE
 
 #define MSM_PMEM_MDP_SIZE       0x00700000
 #define MSM_PMEM_ADSP_SIZE      0x00D00000
